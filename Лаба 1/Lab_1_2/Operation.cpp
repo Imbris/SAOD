@@ -7,13 +7,13 @@ Telephone* createList(Telephone* head, int n)
 {
 	if (n == 0)
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	head = (Telephone*)malloc(sizeof(Telephone));
 
-	cout << "Îñòàëîñòü äîáàâèòü: " << n << endl;
-	cout << "Ââåäèòå íîìåð ïîëó÷àòåëÿ: "; 
+	cout << "ÐžÑÑ‚Ð°Ð»Ð¾ÑÑ‚ÑŒ Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ: " << n << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ Ð¿Ð¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»Ñ: "; 
 
 	int phoneFrom;
 	cin >> phoneFrom;
@@ -25,7 +25,10 @@ Telephone* createList(Telephone* head, int n)
 		int maxValue = res / 10000000;
 		while (!(minValue > 0 && maxValue == 0))
 		{
-			cout << "Íîìåð òåëåôîíà äîëåæí ñîñòîÿòü èç 7 öèôð !\nÏîâòîðèòå ââîä: ";
+			cin.clear(); // ÑÐ±Ñ€Ð°ÑÑ‹Ð²Ð°ÐµÑ‚ Ð²ÑÐµ Ð±Ð¸Ñ‚Ñ‹ Ð¿Ð¾Ñ‚Ð¾ÐºÐ°, Ñ‚Ð¾ÐµÑÑ‚ÑŒ Ð¿Ð¾Ñ‚Ð¾Ðº ÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑÑ "Ñ…Ð¾Ñ€Ð¾ÑˆÐ¸Ð¼"
+			cin.sync();//Ð£Ð´Ð°Ð»Ð¸Ð¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¸Ð· Ð±ÑƒÑ„Ñ„ÐµÑ€Ð°
+			cin.ignore();
+			cout << "ÐÐ¾Ð¼ÐµÑ€ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½Ð° Ð´Ð¾Ð»ÐµÐ¶Ð½ ÑÐ¾ÑÑ‚Ð¾ÑÑ‚ÑŒ Ð¸Ð· 7 Ñ†Ð¸Ñ„Ñ€ !\nÐŸÐ¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚Ðµ Ð²Ð²Ð¾Ð´: ";
 			cin >> res;
 			minValue = res / 1000000;
 			maxValue = res / 10000000;
@@ -33,12 +36,12 @@ Telephone* createList(Telephone* head, int n)
 		head->setPhoneFrom(res);
 	}
 
-	cout << "Ââåäèòå íîìåð îòïðàâèòåëÿ: ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»Ñ: ";
 	int phoneTo;
 	cin >> phoneTo;
 	head->setPhoneTo(phoneTo);
 
-	cout << "Ââåäèòå âðåìÿ ðàçãîâîðà: "; 
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ€ÐµÐ¼Ñ Ñ€Ð°Ð·Ð³Ð¾Ð²Ð¾Ñ€Ð°: "; 
 	int timeTell;
 	cin >> timeTell;
 	head->setTimeTell(timeTell);
@@ -53,7 +56,7 @@ void showList(Telephone* list)
 {
 	if (list)
 	{
-		cout << "Íîìåð îòïðàâèòåëÿ: " << list->getPhoneFrom() << "\tÍîìåð ïîëó÷àòåëÿ: " << list->getPhoneTo() << "\tÂðåìÿ ðàçãîâîðà: " << list->getTimeTell() << endl;
+		cout << "ÐÐ¾Ð¼ÐµÑ€ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»Ñ: " << list->getPhoneFrom() << "\tÐÐ¾Ð¼ÐµÑ€ Ð¿Ð¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»Ñ: " << list->getPhoneTo() << "\tÐ’Ñ€ÐµÐ¼Ñ Ñ€Ð°Ð·Ð³Ð¾Ð²Ð¾Ñ€Ð°: " << list->getTimeTell() << endl;
 		showList(list->getNext());
 	}
 }
@@ -68,7 +71,7 @@ Telephone* findNode(Telephone* current, int phoneFrom)
 		}
 		return findNode(current->getNext(), phoneFrom);
 	}
-	return nullptr;
+	return NULL;
 }
 
 Telephone* getLastNode(Telephone* current)
@@ -81,7 +84,7 @@ Telephone* getLastNode(Telephone* current)
 		}
 		return current;
 	}
-	return nullptr;
+	return NULL;
 }
 
 void addNode(Telephone* lastNode, Telephone* nodeNew)
@@ -130,8 +133,8 @@ void sortList(Telephone* head)
 
 Telephone* getLastNodeForDelete(Telephone* head, int phoneFrom)
 {
-	Telephone* last = nullptr;
-	for (Telephone* i = head; i->getNext(); i = i->getNext())
+	Telephone* last = NULL;
+	for (Telephone* i = head; i; i = i->getNext())
 	{
 		if (i->getPhoneFrom() == phoneFrom)
 		{
@@ -144,16 +147,19 @@ Telephone* getLastNodeForDelete(Telephone* head, int phoneFrom)
 void deletChoosenNode(Telephone* head)
 {
 	int phoneFrom;
-	cout << "Ââåäèòå íîìåð òåëåôîíà îòïðàâèòåëÿ: "; cin >> phoneFrom;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½Ð° Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÐµÐ»Ñ: "; cin >> phoneFrom;
 	Telephone* last = getLastNodeForDelete(head, phoneFrom);
-	for (Telephone* i = head; i->getNext(); i = i->getNext())
+	Telephone* prev = head;
+	for (Telephone* i = head; i; i = i->getNext())
 	{
 		if (i == last)
 		{
-			i->setNext(i->getNext()->getNext());
-			free(i->getNext());
+			if (i->getNext()) prev->setNext(i->getNext()); else prev->setNext(NULL);
+			free(i);
+			i = prev;
 			return;
 		}
+		prev = i;
 	}
 }
 

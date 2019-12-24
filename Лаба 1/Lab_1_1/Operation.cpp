@@ -7,13 +7,13 @@ Node* createList(Node* head, int n)
 {
 	if (n == 0)
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	head = (Node*)malloc(sizeof(Node));
 
-	cout << "��������� ��������: " << n << endl;
-	cout << "������� ����� ����������: "; cin >> head->phoneFrom;
+	cout << "Осталость добавить: " << n << endl;
+	cout << "Введите номер получателя: "; cin >> head->phoneFrom;
 	
 	{
 		int res = head->phoneFrom;
@@ -21,7 +21,8 @@ Node* createList(Node* head, int n)
 		int maxValue = res / 10000000;
 		while ( !(minValue > 0 && maxValue == 0) )
 		{
-			cout << "����� �������� ������ �������� �� 7 ���� !\n��������� ����: ";
+			cin.ignore();
+			cout << "Номер телефона долежн состоять из 7 цифр !\nПовторите ввод: ";
 			cin >> res;
 			minValue = res / 1000000;
 			maxValue = res / 10000000;
@@ -29,8 +30,8 @@ Node* createList(Node* head, int n)
 		head->phoneFrom = res;
 	}
 	
-	cout << "������� ����� �����������: "; cin >> head->phoneTo;
-	cout << "������� ����� ���������: "; cin >> head->timeTell;
+	cout << "Введите номер отправителя: "; cin >> head->phoneTo;
+	cout << "Введите время разговора: "; cin >> head->timeTell;
 	cout << "\n\n";
 
 	head->next = createList(head->next, n - 1);
@@ -42,7 +43,7 @@ void showList(Node* list)
 {
 	if (list)
 	{
-		cout << "����� �����������: " << list->phoneFrom << "\t����� ����������: " << list->phoneTo << "\t����� ���������: " << list->timeTell << endl;
+		cout << "Номер отправителя: " << list->phoneFrom << "\tНомер получателя: " << list->phoneTo << "\tВремя разговора: " << list->timeTell << endl;
 		showList(list->next);
 	}
 }
@@ -57,7 +58,7 @@ Node* findNode(Node* current, int phoneFrom)
 		}
 		return findNode(current->next, phoneFrom);
 	}
-	return nullptr;
+	return NULL;
 }
 
 Node* getLastNode(Node* current)
@@ -70,7 +71,7 @@ Node* getLastNode(Node* current)
 		}
 		return current;
 	}
-	return nullptr;
+	return NULL;
 }
 
 void addNode(Node* lastNode, Node* nodeNew)
@@ -119,30 +120,39 @@ void sortList(Node* head)
 
 Node* getLastNodeForDelete(Node* head, int phoneFrom)
 {
-	Node* last = nullptr;
-	for (Node* i = head; i->next; i = i->next)
+	Node* last = NULL;
+	for (Node* i = head; i; i = i->next)
 	{
-		if (i->phoneFrom = phoneFrom)
+		if (i->phoneFrom == phoneFrom)
 		{
 			last = i;
 		}
 	}
+	showList(head);
+	cout << endl << "Удаляемая запись: " << endl << "Номер отправителя: " << last->phoneFrom << "\tНомер получателя: " << last->phoneTo << "\tВремя разговора: " << last->timeTell << endl;
 	return last;
 }
 
 void deletChoosenNode(Node* head)
 {
 	int phoneFrom;
-	cout << "������� ����� �������� �����������: "; cin >> phoneFrom;
+	cout << "Введите номер телефона отправителя: "; cin >> phoneFrom;
 	Node* last = getLastNodeForDelete(head, phoneFrom);
-	for (Node* i = head; i->next; i = i->next)
+	Node* prev = head;
+	for (Node* i = head; i; i = i->next)
 	{
 		if (i == last)
 		{
-			i->next = i->next->next;
-			free(i->next);
+			cout << endl << "Удаляю....: " << endl << "Номер отправителя: " << i->phoneFrom << "\tНомер получателя: " << i->phoneTo << "\tВремя разговора: " << i->timeTell << endl;
+			
+			cout << endl << "Предыдущая: " << endl << "Номер отправителя: " << prev->phoneFrom << "\tНомер получателя: " << prev->phoneTo << "\tВремя разговора: " << prev->timeTell << endl;
+			if (i->next) { cout << endl << "Следующая: " << endl << "Номер отправителя: " << i->next->phoneFrom << "\tНомер получателя: " << i->next->phoneTo << "\tВремя разговора: " << i->next->timeTell << endl;
+			
+			prev->next = i->next->next; } else prev->next = NULL;
+			free(i);
+			i= prev;
 			return;
-		}
+		} else prev = i;
 	}
 }
 

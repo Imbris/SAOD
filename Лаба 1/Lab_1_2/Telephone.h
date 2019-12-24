@@ -1,18 +1,20 @@
 #pragma once
+using namespace std;
+
 class Telephone
 {
 private:
-	//Номер отправителя
+	//РќРѕРјРµСЂ РѕС‚РїСЂР°РІРёС‚РµР»СЏ
 	int phoneFrom;
 
-	//Номер получателя
+	//РќРѕРјРµСЂ РїРѕР»СѓС‡Р°С‚РµР»СЏ
 	int phoneTo;
 
-	//Время разговора в минутах
+	//Р’СЂРµРјСЏ СЂР°Р·РіРѕРІРѕСЂР° РІ РјРёРЅСѓС‚Р°С…
 	int timeTell;
 
-	//Ссылка на следующий элемент списка
-	Telephone* next = nullptr;
+	//РЎСЃС‹Р»РєР° РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
+	Telephone* next;
 
 public:
 	Telephone();
@@ -27,4 +29,3 @@ public:
 	void setTimeTell(int timeTell);
 	void setNext(Telephone* next);
 };
-

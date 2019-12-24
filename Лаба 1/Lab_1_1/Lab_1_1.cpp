@@ -1,5 +1,6 @@
 ﻿#include <iostream>
-#include <windows.h>
+//#include <windows.h>
+#include "stdlib.h"
 #include "Operation.h"
 #include "Telephone.h"
 
@@ -7,15 +8,12 @@ using namespace std;
 
 int main()
 {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
-
 	short answer2 = 10;
-	Telephone* list = nullptr;
+	Telephone* list = NULL;
 
 	while (answer2 != 0) {
-		system("cls");
-		cout << "Лабораторная работа №1 Бикеева А. И. Вариант 2\n\n";
+		system("clear");
+		cout << "Лабораторная работа №1 Вайнштейн Д.П. Вариант 2\n\n";
 		cout << "Задание 1\nРазработать многомодульную программу, \nкоторая демонстрирует выполнение всех операций, \nопределенных вариантом, над линейным однонаправленным \nдинамическим списком.\n";
 		cout << "\nМеню\n";
 		cout << "1) Создать новый список из n узлов\n";
@@ -31,14 +29,16 @@ int main()
 			cout << "ERROR\n";
 			cin.clear(); // сбрасывает все биты потока, тоесть поток становится "хорошим"
 			cin.sync();//Удалим данные из буффера
+			cin.ignore();
 			cout << "Повторите ввод : ";
 		}
-		system("cls");
-		cout << "Лабораторная работа №1 Бикеева А. И. Вариант 2\n\n";
+		system("clear");
+		cout << "Лабораторная работа №1 Вайнштейн Д.П. Вариант 2\n\n";
 		switch (answer2)
 		{
 		case 0: {
-			system("pause");
+			//system("pause");
+			//cin.get();			
 			break;
 		}
 		case 1:
@@ -55,7 +55,8 @@ int main()
 			list = createList(list, n);
 
 			cout << "\n\nСписок сформирован";
-			system("pause");
+			cin.ignore(); cin.get();
+			//system("pause");
 			break;
 		}
 		case 2: 
@@ -68,7 +69,9 @@ int main()
 			else {
 				cout << "Список пуст";
 			}
-			system("pause");
+			//cin.ignore(); 
+			cin.get();
+			//system("pause");
 			break;
 		}
 		case 3:
@@ -86,24 +89,28 @@ int main()
 				else {
 					cout << "Узле с указанным телефоном отправителя - не найден"<<endl;
 				}
+				cin.ignore(); 
 			}
 			else {
 				cout << "Список пуст\n\n";
 			}
-			system("pause");
+			cin.get();
+			//system("pause");
 			break;
 		}
 		case 4:
 		{
 			if (list)
 			{
-				addNode(getLastNode(list), nullptr);
+				addNode(getLastNode(list), NULL);
 				cout << "\n\nНовый узел добавлен";
+				cin.ignore();
 			}
 			else {
 				cout << "Список пуст\n\n";
 			}
-			system("pause");
+			cin.get();
+			//system("pause");
 			break;
 		}
 		case 5:
@@ -116,7 +123,8 @@ int main()
 			else {
 				cout << "Список пуст\n\n";
 			}
-			system("pause");
+			cin.get();
+			//system("pause");
 			break;
 		}
 		case 6:
@@ -125,11 +133,13 @@ int main()
 			{
 				deletChoosenNode(list);
 				cout << "\n\nОперация выполнена успешно" << endl;
+				cin.ignore();
 			}
 			else {
 				cout << "Список пуст\n\n";
 			}
-			system("pause");
+			cin.get();
+			//system("pause");
 			break;
 		}
 		case 7:
@@ -139,16 +149,19 @@ int main()
 				int phoneFrom = 0;
 				cout << "Введите номер телефона отправителя: "; cin >> phoneFrom;
 				cout << "\n\nВремя разговора с данным телефоном = "<< sumTimeTell(list, phoneFrom)<< endl;
+				cin.ignore();
 			}
 			else {
 				cout << "Список пуст\n\n";
 			}
-			system("pause");
+			cin.get();
+			//system("pause");
 			break;
 		}
 		default:
 		{
-			system("pause");
+			cin.ignore(); cin.get();
+			//system("pause");
 		}
 		break;
 		}
